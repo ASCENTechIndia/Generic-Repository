@@ -142,7 +142,7 @@ useEffect(() => {
             </p>
           )}  */}
              <p className="text-[10px] sm:text-xs md:text-sm text-blue-500">
-           Medical Inventory
+           Generic Inventory
           </p> 
         </div>
       </div>

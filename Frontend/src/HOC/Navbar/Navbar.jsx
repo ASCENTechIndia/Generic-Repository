@@ -37,7 +37,7 @@ const iconMap = {
   Default: Shapes,
 };
 
-const Navbar = ({ title = "MedInvent", isOpen, onClose }) => {
+const Navbar = ({ title = "Generic Invent", isOpen, onClose }) => {
   const [menuData, setMenuData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [openSections, setOpenSections] = useState({}); // 🔹 accordion state

@@ -30,7 +30,7 @@ const FrmGenerateReport = () => {
             facility: "",
             reportParams: "",
             emailReport: true,
-            email: "admin@medinventory.com",
+            email: "admin@genericinventory.com",
           }}
         >
           {() => (
