@@ -1,0 +1,95 @@
+/* Charts Container */
+.Charts {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  gap: 20px;
+  justify-content: center;
+  padding: 24px;
+  width: 100%;
+}
+
+/* Card Styling */
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 380px;
+  flex: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Effect for Better UX */
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Title & Subtitle Styling */
+.card-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.card-subtitle {
+  font-size: 0.9em;
+  color: black;
+  margin-bottom: 10px;
+}
+
+/* Content Alignment */
+.card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Scheme Score Styling */
+.scheme-score {
+  font-size: 1em;
+  margin-top: 10px;
+}
+
+.good {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .Charts {
+    justify-content: space-around;
+  }
+
+  .card {
+    max-width: 70%; /* Ensures two cards per row on tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .Charts {
+    flex-direction: column;
+    align-items: center;
+  }
+  .card-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: black;
+  }
+
+  .card {
+    max-width: 80%; /* Takes up most of the screen width */
+  }
+}
+
+@media (max-width: 480px) {
+  .Charts {
+    padding: 5px;
+    overflow-x: hidden;
+  }
+
+  .card {
+    max-width: 70%; /* Full width for small screens */
+  }
+}

@@ -1,0 +1,32 @@
+.TableBox table {
+  font-size: 14px; /* You can adjust the size here */
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.TableBox th,
+.TableBox td {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+}
+
+.TableBoxWrapper {
+  max-height: 400px; /* Adjust height as needed */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Optional: show scrollbars nicely */
+.TableBoxWrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.TableBoxWrapper::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border-radius: 4px;
+}
+
+.TableBoxWrapper::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
