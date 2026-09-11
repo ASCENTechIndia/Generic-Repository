@@ -53,7 +53,6 @@ const FrmRequisitionList = () => {
         const mappedData = list.map((req) => [
           req.REQUISITION_NO || "-",
           req.REQUISITION_DATE || "-",
-          req.HOSPITAL || "-",
           req.STATUS || "-",
           req.CREATED_BY || "-",
           req.LAST_ISSUE_DATE || "-",
@@ -132,7 +131,6 @@ const FrmRequisitionList = () => {
   const tableHeader = [
     "Requisition No",
     "Requisition Date",
-    "Hospital",
     "Status",
     "Created By",
     "Last Issue Date",
