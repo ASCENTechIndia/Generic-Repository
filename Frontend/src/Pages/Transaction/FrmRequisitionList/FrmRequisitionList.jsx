@@ -140,11 +140,11 @@ const FrmRequisitionList = () => {
 
   return (
     <Layout
-      title="Requisition List"
+      title="Material Indent Note"
       breadcrumb={{
         homeLink: "/dashboard",
         homeText: "Home",
-        current: "Requisition List",
+        current: "Material Indent Note",
       }}
     >
       <div className="">

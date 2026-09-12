@@ -177,11 +177,11 @@ Object.values(grouped).forEach((po) => {
 
   return (
     <Layout
-      title="Procurement Management"
+      title="Purchase Order Approval"
       breadcrumb={{
         homeLink: "/dashboard",
         homeText: "Home",
-        current: "Procurement Management",
+        current: "Purchase Order Approval",
       }}
     >
       <div className="p-6">

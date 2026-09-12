@@ -22,7 +22,8 @@ const FrmUnitMeasureMasterList = () => {
   const fetchUOMs = useCallback(async () => {
     try {
       setLoading(true);
-      // Mock API call - Replace with actual API when ready
+
+      // Replace with actual API when ready:
       // const payload = { ulbId };
       // const { data } = await apiService.post("GetUOMListByUlb", payload);
 
@@ -30,64 +31,74 @@ const FrmUnitMeasureMasterList = () => {
       const dummyData = [
         {
           UOM_ID: 1,
-          NOS: "10",
-          KG: "5",
-          GRAM: "500",
-          LITER: "2",
-          METER: "10",
-          BOX: "1",
-          PACKET: "5",
-          PIECE: "10",
-          DOZEN: "2",
-          SET: "1",
+          UOM_CODE: "NOS",
+          UOM_NAME: "Number",
+          UOM_SHORT_NAME: "Nos",
+          UOM_CATEGORY_NAME: "Quantity",
+          DECIMAL_ALLOWED: "N",
+          DECIMAL_PLACES: 0,
+          DESCRIPTION: "Used for countable items",
+          STATUS: "A",
         },
         {
           UOM_ID: 2,
-          NOS: "20",
-          KG: "10",
-          GRAM: "1000",
-          LITER: "4",
-          METER: "20",
-          BOX: "2",
-          PACKET: "10",
-          PIECE: "20",
-          DOZEN: "4",
-          SET: "2",
+          UOM_CODE: "KG",
+          UOM_NAME: "Kilogram",
+          UOM_SHORT_NAME: "Kg",
+          UOM_CATEGORY_NAME: "Weight",
+          DECIMAL_ALLOWED: "Y",
+          DECIMAL_PLACES: 3,
+          DESCRIPTION: "Used for weight-based materials",
+          STATUS: "A",
+        },
+        {
+          UOM_ID: 3,
+          UOM_CODE: "BOX",
+          UOM_NAME: "Box",
+          UOM_SHORT_NAME: "Box",
+          UOM_CATEGORY_NAME: "Packaging",
+          DECIMAL_ALLOWED: "N",
+          DECIMAL_PLACES: 0,
+          DESCRIPTION: "Used for boxed materials",
+          STATUS: "A",
         },
       ];
 
       if (Array.isArray(dummyData)) {
         const mappedUOMs = dummyData.map((uom) => [
-          uom.NOS,
-          uom.KG,
-          uom.GRAM,
-          uom.LITER,
-          uom.METER,
-          uom.BOX,
-          uom.PACKET,
-          uom.PIECE,
-          uom.DOZEN,
-          uom.SET,
+          uom.UOM_CODE,
+          uom.UOM_NAME,
+          uom.UOM_SHORT_NAME,
+          uom.UOM_CATEGORY_NAME,
+          uom.DECIMAL_ALLOWED === "Y" ? "Yes" : "No",
+          uom.DECIMAL_ALLOWED === "Y" ? uom.DECIMAL_PLACES : "-",
+          uom.DESCRIPTION || "-",
+          uom.STATUS === "A" ? "Active" : "Inactive",
+
           <div className="flex justify-center gap-2" key={uom.UOM_ID}>
             <button
+              type="button"
               className="p-1 border rounded hover:bg-gray-100 text-blue-600"
               onClick={() =>
                 navigate(
                   `/Master/FrmUnitMeasureMaster?mode=2&uomId=${uom.UOM_ID}`
                 )
               }
+              title="Edit"
             >
               <Edit size={16} />
             </button>
+
             <button
+              type="button"
               className="p-1 border rounded hover:bg-red-50 text-red-600"
               onClick={() =>
                 handleDelete(
                   uom.UOM_ID,
-                  uom.NOS,
-                  "A"
+                  uom.UOM_NAME
                 )
               }
+              title="Delete"
             >
               <Trash2 size={16} />
             </button>
@@ -110,16 +121,16 @@ const FrmUnitMeasureMasterList = () => {
     fetchUOMs();
   }, [fetchUOMs]);
 
-  const handleDelete = async (uomId, uomName, uomFlag) => {
+  const handleDelete = async (uomId, uomName) => {
     const confirmDelete = window.confirm(
-      `Are you sure you want to delete this UOM?`
+      `Are you sure you want to delete "${uomName}"?`
     );
+
     if (!confirmDelete) return;
 
     try {
       setLoading(true);
-      
-      // ✅ Fetching IP directly here as per your instruction
+
       const ip = await GetIPAddress();
 
       const payload = {
@@ -131,10 +142,16 @@ const FrmUnitMeasureMasterList = () => {
         in_source: config.source,
       };
 
-      // Mock API call - Replace with actual API when ready
+      console.log("Delete UOM Payload:", payload);
+
+      // Replace with actual API when ready:
       // const { data } = await apiService.post("UOMIns", payload);
-      
-      const data = { errorCode: 9999, errorMessage: "Deleted Successfully" };
+
+      // Mock API response for now
+      const data = {
+        errorCode: 9999,
+        errorMessage: "Deleted Successfully",
+      };
 
       if (data?.errorCode === 9999) {
         alert(data?.errorMessage || "Deleted Successfully");
@@ -150,11 +167,16 @@ const FrmUnitMeasureMasterList = () => {
     }
   };
 
-  // ✅ List columns with all 10 fields
   const headers = [
-    "Nos", "Kg", "Gram", "Liter", "Meter", 
-    "Box", "Packet", "Piece", "Dozen", "Set", 
-    "Actions"
+    "UOM Code",
+    "UOM Name",
+    "Short Name",
+    "UOM Category",
+    "Decimal Allowed",
+    "Decimal Places",
+    "Description",
+    "Status",
+    "Actions",
   ];
 
   return (

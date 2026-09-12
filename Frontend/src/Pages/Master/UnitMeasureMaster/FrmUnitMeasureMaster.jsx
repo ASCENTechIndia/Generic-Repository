@@ -3,7 +3,6 @@ import Layout from "../../../Components/Layout";
 import { Form, Formik, Field } from "formik";
 import Label from "../../../Components/Label";
 import Button from "../../../Components/Button";
-import { ValidationSchemas } from "../../../HOC/Validation/Validation";
 import GetIPAddress from "../../../utils/ipHelper";
 import config from "../../../utils/config";
 import InputField from "../../../Components/InputField";
@@ -23,56 +22,66 @@ const FrmUnitMeasureMaster = () => {
   const mode = queryParams.get("mode") || "1"; // 1 = Add, 2 = Edit
   const uomId = queryParams.get("uomId");
 
-  // ✅ 10 Text Fields as requested
+  // Generic Inventory - Unit of Measure Master
   const [initialValues, setInitialValues] = useState({
-    nos: "",
-    kg: "",
-    gram: "",
-    liter: "",
-    meter: "",
-    box: "",
-    packet: "",
-    piece: "",
-    dozen: "",
-    set: "",
+    uomCode: "",
+    uomName: "",
+    uomShortName: "",
+    uomCategoryId: "",
+    decimalAllowed: "N",
+    decimalPlaces: "0",
+    description: "",
+    status: "A",
   });
 
   const [loading, setLoading] = useState(false);
+
+  // Temporary category list.
+  // Replace this with your UOM Category Master API when that API is ready.
+  const uomCategoryOptions = [
+    { id: "1", name: "Quantity" },
+    { id: "2", name: "Weight" },
+    { id: "3", name: "Volume" },
+    { id: "4", name: "Length" },
+    { id: "5", name: "Area" },
+    { id: "6", name: "Packaging" },
+  ];
 
   useEffect(() => {
     const fetchUOMById = async () => {
       if (mode !== "1" && uomId) {
         try {
           setLoading(true);
-          // Mock API call - Replace with actual API when ready
-          // const payload = { ulbId: Number(ulbId), uomId: Number(uomId) };
+
+          // Replace with actual API when ready:
+          // const payload = {
+          //   ulbId: Number(ulbId),
+          //   uomId: Number(uomId),
+          // };
           // const { data } = await apiService.post("GetUOMById", payload);
 
           // Dummy data for now
           const data = {
-            NOS: "10",
-            KG: "5",
-            GRAM: "500",
-            LITER: "2",
-            METER: "10",
-            BOX: "1",
-            PACKET: "5",
-            PIECE: "10",
-            DOZEN: "2",
-            SET: "1",
+            UOM_ID: uomId,
+            UOM_CODE: "KG",
+            UOM_NAME: "Kilogram",
+            UOM_SHORT_NAME: "Kg",
+            UOM_CATEGORY_ID: "2",
+            DECIMAL_ALLOWED: "Y",
+            DECIMAL_PLACES: "3",
+            DESCRIPTION: "Weight measurement unit",
+            STATUS: "A",
           };
 
           setInitialValues({
-            nos: data.NOS || "",
-            kg: data.KG || "",
-            gram: data.GRAM || "",
-            liter: data.LITER || "",
-            meter: data.METER || "",
-            box: data.BOX || "",
-            packet: data.PACKET || "",
-            piece: data.PIECE || "",
-            dozen: data.DOZEN || "",
-            set: data.SET || "",
+            uomCode: data.UOM_CODE || "",
+            uomName: data.UOM_NAME || "",
+            uomShortName: data.UOM_SHORT_NAME || "",
+            uomCategoryId: data.UOM_CATEGORY_ID || "",
+            decimalAllowed: data.DECIMAL_ALLOWED || "N",
+            decimalPlaces: data.DECIMAL_PLACES ?? "0",
+            description: data.DESCRIPTION || "",
+            status: data.STATUS || "A",
           });
         } catch (error) {
           console.error("Error fetching UOM by id:", error);
@@ -84,7 +93,50 @@ const FrmUnitMeasureMaster = () => {
     };
 
     fetchUOMById();
-  }, [mode, uomId, ulbId, user]);
+  }, [mode, uomId, ulbId]);
+
+  const validate = (values) => {
+    const errors = {};
+
+    if (!values.uomCode?.trim()) {
+      errors.uomCode = "UOM Code is required";
+    }
+
+    if (!values.uomName?.trim()) {
+      errors.uomName = "UOM Name is required";
+    }
+
+    if (!values.uomShortName?.trim()) {
+      errors.uomShortName = "UOM Short Name is required";
+    }
+
+    if (!values.uomCategoryId) {
+      errors.uomCategoryId = "UOM Category is required";
+    }
+
+    if (!values.decimalAllowed) {
+      errors.decimalAllowed = "Decimal Allowed is required";
+    }
+
+    if (
+      values.decimalAllowed === "Y" &&
+      (values.decimalPlaces === "" ||
+        values.decimalPlaces === null ||
+        Number(values.decimalPlaces) < 1)
+    ) {
+      errors.decimalPlaces = "Decimal Places is required when decimal is allowed";
+    }
+
+    if (Number(values.decimalPlaces) < 0) {
+      errors.decimalPlaces = "Decimal Places cannot be negative";
+    }
+
+    if (!values.status) {
+      errors.status = "Status is required";
+    }
+
+    return errors;
+  };
 
   const handleSubmit = async (values, { resetForm }) => {
     try {
@@ -95,33 +147,45 @@ const FrmUnitMeasureMaster = () => {
         in_mode: mode,
         in_ulbId: Number(ulbId),
         in_uomId: mode === "1" ? null : Number(uomId),
-        in_nos: values.nos,
-        in_kg: values.kg,
-        in_gram: values.gram,
-        in_liter: values.liter,
-        in_meter: values.meter,
-        in_box: values.box,
-        in_packet: values.packet,
-        in_piece: values.piece,
-        in_dozen: values.dozen,
-        in_set: values.set,
+
+        in_uomCode: values.uomCode.trim(),
+        in_uomName: values.uomName.trim(),
+        in_uomShortName: values.uomShortName.trim(),
+        in_uomCategoryId: Number(values.uomCategoryId),
+        in_decimalAllowed: values.decimalAllowed,
+        in_decimalPlaces:
+          values.decimalAllowed === "Y"
+            ? Number(values.decimalPlaces)
+            : 0,
+        in_description: values.description?.trim() || null,
+        in_status: values.status,
+
         in_ipaddress: ip,
         in_source: config.source,
       };
 
-      // Mock API call - Replace with actual API when ready
+      // Replace with actual API when ready:
       // const res = await apiService.post("UOMIns", payload);
 
+      // Mock API response for now
       const res = {
-        data: { errorCode: 9999, errorMessage: "Saved Successfully" },
+        data: {
+          errorCode: 9999,
+          errorMessage:
+            mode === "1"
+              ? "UOM saved successfully"
+              : "UOM updated successfully",
+        },
       };
 
-      if (res?.data.errorCode === 9999) {
+      console.log("UOM Payload:", payload);
+
+      if (res?.data?.errorCode === 9999) {
         alert(res.data.errorMessage);
         resetForm();
         navigate("/Master/FrmUnitMeasureMasterList");
       } else {
-        alert(res?.data.errorMessage);
+        alert(res?.data?.errorMessage || "Unable to save UOM.");
       }
     } catch (error) {
       console.error("Error while saving UOM:", error);
@@ -146,150 +210,166 @@ const FrmUnitMeasureMaster = () => {
             enableReinitialize
             initialValues={initialValues}
             onSubmit={handleSubmit}
-            validationSchema={ValidationSchemas().FrmUnitMeasureMaster}
+            validate={validate}
           >
-            {({ errors, touched }) => (
+            {({ errors, touched, values, setFieldValue }) => (
               <Form className="w-full space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                  {/* Nos */}
-                  <div>
-                    <Label text="Nos : " required />
-                    <Field
-                      name="nos"
-                      placeholder="Nos"
-                      component={InputField}
-                      type="text"
-                    />
-                    {touched.nos && errors.nos && (
-                      <div className="text-red-500 text-sm">{errors.nos}</div>
-                    )}
-                  </div>
 
-                  {/* Kg */}
+                  {/* UOM Code */}
                   <div>
-                    <Label text="Kg : " required />
+                    <Label text="UOM Code : " required />
                     <Field
-                      name="kg"
-                      placeholder="Kg"
+                      name="uomCode"
+                      placeholder="Example: KG, NOS, BOX"
                       component={InputField}
                       type="text"
                     />
-                    {touched.kg && errors.kg && (
-                      <div className="text-red-500 text-sm">{errors.kg}</div>
-                    )}
-                  </div>
-
-                  {/* Gram */}
-                  <div>
-                    <Label text="Gram : " required />
-                    <Field
-                      name="gram"
-                      placeholder="Gram"
-                      component={InputField}
-                      type="text"
-                    />
-                    {touched.gram && errors.gram && (
-                      <div className="text-red-500 text-sm">{errors.gram}</div>
-                    )}
-                  </div>
-
-                  {/* Liter */}
-                  <div>
-                    <Label text="Liter : " required />
-                    <Field
-                      name="liter"
-                      placeholder="Liter"
-                      component={InputField}
-                      type="text"
-                    />
-                    {touched.liter && errors.liter && (
-                      <div className="text-red-500 text-sm">{errors.liter}</div>
-                    )}
-                  </div>
-
-                  {/* Meter */}
-                  <div>
-                    <Label text="Meter : " required />
-                    <Field
-                      name="meter"
-                      placeholder="Meter"
-                      component={InputField}
-                      type="text"
-                    />
-                    {touched.meter && errors.meter && (
-                      <div className="text-red-500 text-sm">{errors.meter}</div>
-                    )}
-                  </div>
-
-                  {/* Box */}
-                  <div>
-                    <Label text="Box : " required />
-                    <Field
-                      name="box"
-                      placeholder="Box"
-                      component={InputField}
-                      type="text"
-                    />
-                    {touched.box && errors.box && (
-                      <div className="text-red-500 text-sm">{errors.box}</div>
-                    )}
-                  </div>
-
-                  {/* Packet */}
-                  <div>
-                    <Label text="Packet : " required />
-                    <Field
-                      name="packet"
-                      placeholder="Packet"
-                      component={InputField}
-                      type="text"
-                    />
-                    {touched.packet && errors.packet && (
+                    {touched.uomCode && errors.uomCode && (
                       <div className="text-red-500 text-sm">
-                        {errors.packet}
+                        {errors.uomCode}
                       </div>
                     )}
                   </div>
 
-                  {/* Piece */}
+                  {/* UOM Name */}
                   <div>
-                    <Label text="Piece : " required />
+                    <Label text="UOM Name : " required />
                     <Field
-                      name="piece"
-                      placeholder="Piece"
+                      name="uomName"
+                      placeholder="Example: Kilogram"
                       component={InputField}
                       type="text"
                     />
-                    {touched.piece && errors.piece && (
-                      <div className="text-red-500 text-sm">{errors.piece}</div>
+                    {touched.uomName && errors.uomName && (
+                      <div className="text-red-500 text-sm">
+                        {errors.uomName}
+                      </div>
                     )}
                   </div>
 
-                  {/* Dozen */}
+                  {/* UOM Short Name */}
                   <div>
-                    <Label text="Dozen : " required />
+                    <Label text="UOM Short Name : " required />
                     <Field
-                      name="dozen"
-                      placeholder="Dozen"
+                      name="uomShortName"
+                      placeholder="Example: Kg"
                       component={InputField}
                       type="text"
                     />
-                    {touched.dozen && errors.dozen && (
-                      <div className="text-red-500 text-sm">{errors.dozen}</div>
+                    {touched.uomShortName && errors.uomShortName && (
+                      <div className="text-red-500 text-sm">
+                        {errors.uomShortName}
+                      </div>
                     )}
                   </div>
 
-                  {/* Set */}
+                  {/* UOM Category */}
                   <div>
-                    <Label text="Set : " required />
+                    <Label text="UOM Category : " required />
                     <Field
-                      name="set"
-                      placeholder="Set"
+                      as="select"
+                      name="uomCategoryId"
+                      className="w-full border rounded px-3 py-2"
+                    >
+                      <option value="">Select UOM Category</option>
+                      {uomCategoryOptions.map((item) => (
+                        <option key={item.id} value={item.id}>
+                          {item.name}
+                        </option>
+                      ))}
+                    </Field>
+                    {touched.uomCategoryId && errors.uomCategoryId && (
+                      <div className="text-red-500 text-sm">
+                        {errors.uomCategoryId}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Decimal Allowed */}
+                  <div>
+                    <Label text="Decimal Allowed : " required />
+                    <Field
+                      as="select"
+                      name="decimalAllowed"
+                      className="w-full border rounded px-3 py-2"
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        setFieldValue("decimalAllowed", value);
+
+                        if (value === "N") {
+                          setFieldValue("decimalPlaces", "0");
+                        } else if (
+                          !values.decimalPlaces ||
+                          Number(values.decimalPlaces) === 0
+                        ) {
+                          setFieldValue("decimalPlaces", "2");
+                        }
+                      }}
+                    >
+                      <option value="Y">Yes</option>
+                      <option value="N">No</option>
+                    </Field>
+                    {touched.decimalAllowed && errors.decimalAllowed && (
+                      <div className="text-red-500 text-sm">
+                        {errors.decimalAllowed}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Decimal Places */}
+                  <div>
+                    <Label
+                      text="Decimal Places : "
+                      required={values.decimalAllowed === "Y"}
+                    />
+                    <Field
+                      name="decimalPlaces"
+                      placeholder="Example: 2"
+                      component={InputField}
+                      type="number"
+                      min="0"
+                      max="6"
+                      disabled={values.decimalAllowed !== "Y"}
+                    />
+                    {touched.decimalPlaces && errors.decimalPlaces && (
+                      <div className="text-red-500 text-sm">
+                        {errors.decimalPlaces}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Description */}
+                  <div className="md:col-span-2 lg:col-span-2">
+                    <Label text="Description : " />
+                    <Field
+                      name="description"
+                      placeholder="Enter description"
                       component={InputField}
                       type="text"
                     />
-                    {touched.set && errors.set && (
-                      <div className="text-red-500 text-sm">{errors.set}</div>
+                    {touched.description && errors.description && (
+                      <div className="text-red-500 text-sm">
+                        {errors.description}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Status */}
+                  <div>
+                    <Label text="Status : " required />
+                    <Field
+                      as="select"
+                      name="status"
+                      className="w-full border rounded px-3 py-2"
+                    >
+                      <option value="A">Active</option>
+                      <option value="I">Inactive</option>
+                    </Field>
+                    {touched.status && errors.status && (
+                      <div className="text-red-500 text-sm">
+                        {errors.status}
+                      </div>
                     )}
                   </div>
                 </div>
@@ -297,7 +377,9 @@ const FrmUnitMeasureMaster = () => {
                 <div className="flex justify-center gap-3">
                   <Button
                     type="button"
-                    onClick={() => navigate("/Master/FrmUnitMeasureMasterList")}
+                    onClick={() =>
+                      navigate("/Master/FrmUnitMeasureMasterList")
+                    }
                   >
                     Back
                   </Button>

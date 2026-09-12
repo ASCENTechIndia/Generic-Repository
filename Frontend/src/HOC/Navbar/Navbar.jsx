@@ -8,9 +8,10 @@ import {
   Boxes,
   HandCoinsIcon,
   ClipboardList,
-  Bell,
+  Bell, 
   ChartColumn,
   ChevronDown,
+  Warehouse
 } from "lucide-react";
 import SidebarItem from "../../Components/SidebarItem";
 import apiService from "../../../apiService";
@@ -37,7 +38,7 @@ const iconMap = {
   Default: Shapes,
 };
 
-const Navbar = ({ title = "Generic Invent", isOpen, onClose }) => {
+const Navbar = ({ title = "Generic Inventory", isOpen, onClose }) => {
   const [menuData, setMenuData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [openSections, setOpenSections] = useState({}); // 🔹 accordion state
@@ -64,7 +65,7 @@ const Navbar = ({ title = "Generic Invent", isOpen, onClose }) => {
       try {
         const payload = { userId, ulbId: Number(ulbId), deptId };
         const res = await apiService.post("inventoryMenus", payload);
-
+        console.log("Menu fetch response:", res?.data);
         if (res?.data?.success) {
           setMenuData(res.data.data || []);
         }
@@ -110,7 +111,7 @@ const Navbar = ({ title = "Generic Invent", isOpen, onClose }) => {
       {/* Header */}
       <div className="flex-shrink-0 flex items-center justify-center p-4 border-b border-gray-200 bg-blue-50">
         <span className="text-lg font-bold flex items-center gap-2 text-blue-600">
-          <Hospital className="w-5 h-5" />
+          <Warehouse className="w-5 h-5" />
           {title}
         </span>
       </div>

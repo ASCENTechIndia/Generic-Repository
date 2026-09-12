@@ -202,11 +202,11 @@ const fetchPurchaseOrders = useCallback(async () => {
 
   return (
     <Layout
-      title="Procurement Management"
+      title="Purchase Order"
       breadcrumb={{
         homeLink: "/dashboard",
         homeText: "Home",
-        current: "Procurement Management",
+        current: "Purchase Order",
       }}
     >
       <div className="p-6">

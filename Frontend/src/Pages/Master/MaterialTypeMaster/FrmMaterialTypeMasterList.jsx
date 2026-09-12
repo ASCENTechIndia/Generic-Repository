@@ -22,53 +22,45 @@ const FrmMaterialTypeMasterList = () => {
   const fetchMaterialTypes = useCallback(async () => {
     try {
       setLoading(true);
-      // Mock API call - Replace with actual API when ready
+
+      // Replace with actual API when ready
       // const payload = { ulbId };
-      // const { data } = await apiService.post("GetMaterialTypeListByUlb", payload);
+      // const { data } = await apiService.post(
+      //   "GetMaterialTypeListByUlb",
+      //   payload
+      // );
 
       // Dummy data for now
       const dummyData = [
         {
           MATERIAL_TYPE_ID: 1,
-          CONSUMABLE: "Consumable",
-          STATIONERY: "Stationery",
-          ELECTRICAL: "Electrical",
-          HARDWARE: "Hardware",
-          FURNITURE: "Furniture",
-          IT_EQUIPMENT: "IT Equipment",
-          CLEANING_MATERIAL: "Cleaning Material",
-          RAW_MATERIAL: "Raw Material",
-          FINISHED_GOODS: "Finished Goods",
-          MAPPED_STORE: "Electrical Store",
+          MATERIAL_TYPE_CODE: "MT001",
+          MATERIAL_TYPE_NAME: "Consumable",
+          DESCRIPTION: "Materials consumed during normal operations",
+          STATUS: "A",
+          REMARKS: "General consumable materials",
         },
         {
           MATERIAL_TYPE_ID: 2,
-          CONSUMABLE: "Consumable",
-          STATIONERY: "Stationery",
-          ELECTRICAL: "Electrical",
-          HARDWARE: "Hardware",
-          FURNITURE: "Furniture",
-          IT_EQUIPMENT: "IT Equipment",
-          CLEANING_MATERIAL: "Cleaning Material",
-          RAW_MATERIAL: "Raw Material",
-          FINISHED_GOODS: "Finished Goods",
-          MAPPED_STORE: "General Store",
+          MATERIAL_TYPE_CODE: "MT002",
+          MATERIAL_TYPE_NAME: "Non-Consumable",
+          DESCRIPTION: "Materials used for long-term purposes",
+          STATUS: "A",
+          REMARKS: "General non-consumable materials",
         },
       ];
 
       if (Array.isArray(dummyData)) {
         const mappedMaterialTypes = dummyData.map((mt) => [
-          mt.CONSUMABLE,
-          mt.STATIONERY,
-          mt.ELECTRICAL,
-          mt.HARDWARE,
-          mt.FURNITURE,
-          mt.IT_EQUIPMENT,
-          mt.CLEANING_MATERIAL,
-          mt.RAW_MATERIAL,
-          mt.FINISHED_GOODS,
-          mt.MAPPED_STORE,
-          <div className="flex justify-center gap-2" key={mt.MATERIAL_TYPE_ID}>
+          mt.MATERIAL_TYPE_CODE,
+          mt.MATERIAL_TYPE_NAME,
+          mt.DESCRIPTION,
+          mt.STATUS === "A" ? "Active" : "In-Active",
+          mt.REMARKS,
+          <div
+            className="flex justify-center gap-2"
+            key={mt.MATERIAL_TYPE_ID}
+          >
             <button
               className="p-1 border rounded hover:bg-gray-100 text-blue-600"
               onClick={() =>
@@ -79,12 +71,13 @@ const FrmMaterialTypeMasterList = () => {
             >
               <Edit size={16} />
             </button>
+
             <button
               className="p-1 border rounded hover:bg-red-50 text-red-600"
               onClick={() =>
                 handleDelete(
                   mt.MATERIAL_TYPE_ID,
-                  mt.CONSUMABLE, // Using consumable as identifier for demo
+                  mt.MATERIAL_TYPE_NAME,
                 )
               }
             >
@@ -113,12 +106,12 @@ const FrmMaterialTypeMasterList = () => {
     const confirmDelete = window.confirm(
       `Are you sure you want to delete material type "${materialTypeName}"?`,
     );
+
     if (!confirmDelete) return;
 
     try {
       setLoading(true);
 
-      // ✅ Fetching IP directly here as per your instruction
       const ip = await GetIPAddress();
 
       const payload = {
@@ -127,14 +120,20 @@ const FrmMaterialTypeMasterList = () => {
         in_ulbId: ulbId,
         in_materialTypeId: materialTypeId,
         in_materialTypeName: materialTypeName,
-        in_ipaddress: ip, // ✅ Passed directly
+        in_ipaddress: ip,
         in_source: config.source,
       };
 
-      // Mock API call - Replace with actual API when ready
-      // const { data } = await apiService.post("MaterialTypeIns", payload);
+      // Replace with actual API when ready
+      // const { data } = await apiService.post(
+      //   "MaterialTypeIns",
+      //   payload
+      // );
 
-      const data = { errorCode: 9999, errorMessage: "Deleted Successfully" };
+      const data = {
+        errorCode: 9999,
+        errorMessage: "Deleted Successfully",
+      };
 
       if (data?.errorCode === 9999) {
         alert(data?.errorMessage || "Deleted Successfully");
@@ -150,18 +149,12 @@ const FrmMaterialTypeMasterList = () => {
     }
   };
 
-  // ✅ List columns with all 10 fields
   const headers = [
-    "Consumable",
-    "Stationery",
-    "Electrical",
-    "Hardware",
-    "Furniture",
-    "IT Equipment",
-    "Cleaning Material",
-    "Raw Material",
-    "Finished Goods",
-    "Mapped Store",
+    "Material Type Code",
+    "Material Type Name",
+    "Description",
+    "Status",
+    "Remarks",
     "Actions",
   ];
 

@@ -149,7 +149,7 @@ const FrmGrnStock = () => {
 
   return (
     <Layout
-      title="Goods Receipt Note (GRN)"
+      title="Material Receipt Note (GRN)"
       breadcrumb={{
         homeLink: "/dashboard",
         homeText: "Home",
