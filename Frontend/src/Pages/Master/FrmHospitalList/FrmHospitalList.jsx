@@ -58,7 +58,8 @@ const FrmHospitalList = () => {
                 handleDelete(
                   hospital.NUM_HOSPITAL_ID,
                   hospital.VAR_HOSPITAL_NAME,
-                  hospital.VAR_HOSPITAL_ACTIVEFLAG
+                  hospital.VAR_HOSPITAL_ACTIVEFLAG,
+                  hospital.VAR_HOSPITAL_LOCATION
                 )
               }
             >
@@ -85,7 +86,7 @@ const FrmHospitalList = () => {
   }, [fetchHospitals, ulbId]);
 
   // Delete handler
-  const handleDelete = async (hospitalId, hospitalName, flag) => {
+  const handleDelete = async (hospitalId, hospitalName, flag, location) => {
     const confirmDelete = window.confirm(
       `Are you sure you want to delete hospital "${hospitalName}"?`
     );
@@ -95,16 +96,17 @@ const FrmHospitalList = () => {
       setLoading(true);
       const payload = {
         in_userId: userId,
+        in_ulbid: ulbId,
         in_mode: 3,
-        in_ulbId: ulbId,
         in_hospitalId: hospitalId,
         in_hospitalName: hospitalName,
-        in_flag: flag,
+        in_location: location,
+        in_activeFlag: flag,
         in_ipaddress: ipAddress,
         in_source: config.source,
       };
 
-      const { data } = await apiService.post("HospitalIns", payload);
+      const { data } = await apiService.post("hospitalins", payload);
 
       if (data?.errorCode === 9999) {
         alert(data?.message || "Deleted Successfully");

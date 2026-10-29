@@ -45,14 +45,14 @@ const FrmItemMasterList = () => {
         in_itemId: item["Item Id"],
         in_itemCode: item["Item Code/SKU"],
         in_itemName: item["Item Name"],
-        in_itemCategory: item["Category"],
+        in_itemCategory: item["Category_id"],
         in_itemUnit: item["Item Unit"],
         in_flag: item["Flag"],
         in_ipaddress: ip,
         in_source: config.source,
       };
       const res = await apiService.post("AoinItemIns", payload);
-     
+
       if (res?.data?.errorCode === 9999) {
         alert(res?.data?.errorMessage);
         fetchItemMasterTableData();
@@ -69,8 +69,8 @@ const FrmItemMasterList = () => {
   const fetchItemMasterTableData = async () => {
     try {
       setLoading(true);
-      const res = await apiService.post("GetItemList", {ulbId : ulbid});
-       console.log("List",res)
+      const res = await apiService.post("GetItemList", { ulbId: ulbid });
+      console.log("List", res)
       if (Array.isArray(res?.data) && res.data.length > 0) {
         const data = res.data.map((item) => [
           item["Item Code/SKU"] || "",
@@ -80,7 +80,7 @@ const FrmItemMasterList = () => {
           item["Item Unit"] || "",
           item["Pack Size"] || "",
           item["GST Applicable"] || "",
-          item["Applied GST Rate"] || "", 
+          item["Applied GST Rate"] || "",
           item["Minimum Order Quantity (MOQ)"] || "",
           item["Vendor"] || "",
           item["Manufacturer"] || "",

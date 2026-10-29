@@ -8,7 +8,7 @@ import {
   Boxes,
   HandCoinsIcon,
   ClipboardList,
-  Bell, 
+  Bell,
   ChartColumn,
   ChevronDown,
   Warehouse
@@ -58,14 +58,18 @@ const Navbar = ({ title = "Generic Inventory", isOpen, onClose }) => {
   };
 
   // 🔹 Fetch menus
+
   useEffect(() => {
+    console.log(userId, ulbId, deptId)
     if (!userId || !ulbId || !deptId) return;
 
     const loadMenus = async () => {
       try {
+
+        console.log(userId, ulbId, deptId, "in try")
         const payload = { userId, ulbId: Number(ulbId), deptId };
         const res = await apiService.post("inventoryMenus", payload);
-        console.log("Menu fetch response:", res?.data);
+
         if (res?.data?.success) {
           setMenuData(res.data.data || []);
         }
@@ -146,17 +150,15 @@ const Navbar = ({ title = "Generic Inventory", isOpen, onClose }) => {
                   >
                     <span>{section.MENUTITLE}</span>
                     <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-300 ${
-                        isOpenSection ? "rotate-180" : ""
-                      }`}
+                      className={`w-4 h-4 transition-transform duration-300 ${isOpenSection ? "rotate-180" : ""
+                        }`}
                     />
                   </button>
 
                   {/* Children */}
                   <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      isOpenSection ? "opacity-100" : "max-h-0 opacity-0"
-                    }`}
+                    className={`overflow-hidden transition-all duration-300 ${isOpenSection ? "opacity-100" : "max-h-0 opacity-0"
+                      }`}
                   >
                     <div className="space-y-1 pl-2">
                       {(section.children || []).map((item) => {

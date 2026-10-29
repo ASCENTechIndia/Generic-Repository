@@ -20,6 +20,8 @@ const FrmMediManage = () => {
   const [medicineData, setMedicineData] = useState([]);
 
   const handleDelete = async (values) => {
+    console.log("Selected medicine:", values);
+    console.log("Attribute ID:", values.ATTRIBUTE_ID);
     const payld = {
       entityType: "MEDICINE",
       ulbId: ulbid,
@@ -30,8 +32,11 @@ const FrmMediManage = () => {
       return;
     }
     const data = res.data;
+    console.log("DATA", data)
+    console.log("ATTR", values.ATTRIBUTE_ID)
     try {
       const ip = await GetIPAddress();
+      console.log("ATTRinpayload", values.ATTRIBUTE_ID)
       const payload = {
         in_userId: userId,
         in_mode: 3,
@@ -104,6 +109,8 @@ const FrmMediManage = () => {
         ],
       };
       const res = await apiService.post("aoin_propertyvalue_ins", payload);
+      console.log("FULL PAYLOAD:", payload);
+      console.log("ATTRIBUTE ID IN PAYLOAD:", payload.in_attributeId);
       if (res?.data?.results.some((r) => r.errorCode !== 9999)) {
         alert("Some properties failed: " + JSON.stringify(res.data.results));
       } else {
@@ -122,8 +129,10 @@ const FrmMediManage = () => {
       };
       // const res = await apiService.post("getMedicineList", payload);
       const res = await axios.post(`${API_BASE_URL}/getMedicineList`, payload);
+      console.log("Medicine API data:", res);
       if (res?.data?.length > 0) {
         const data = res.data.map((data) => {
+          console.log("Medicine API data:", data);
           return [
             data.MEDICINE_NAME,
             data.GENERIC_NAME,

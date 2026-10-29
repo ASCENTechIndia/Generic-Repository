@@ -63,7 +63,8 @@ const FrmSubCategoryList = () => {
                 handleDelete(
                   sub.SUBCATEGORY_ID,
                   sub.SUBCATEGORY_NAME,
-                  sub.ACTIVE_FLAG
+                  sub.ACTIVE_FLAG,
+                  sub.CATEGORY_ID
                 )
               }
             >
@@ -90,7 +91,7 @@ const FrmSubCategoryList = () => {
   }, [fetchSubCategories, ulbId]);
 
   // Delete handler
-  const handleDelete = async (subCategoryId, subCategoryName, flag) => {
+  const handleDelete = async (subCategoryId, subCategoryName, flag, parentcatId) => {
     const confirmDelete = window.confirm(
       `Are you sure you want to delete subcategory "${subCategoryName}"?`
     );
@@ -104,7 +105,7 @@ const FrmSubCategoryList = () => {
         in_ulbId: ulbId,
         in_categoryId: subCategoryId,
         in_categoryName: subCategoryName,
-        in_parentCatId: null,
+        in_parentCatId: parentcatId,
         in_flag: flag,
         in_ipaddress: ipAddress,
         in_source: config.source,

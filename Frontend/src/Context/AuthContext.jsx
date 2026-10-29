@@ -25,55 +25,55 @@ export const AuthProvider = ({ children }) => {
       window.addEventListener(event, resetInactivityTimer);
     });
   };
-useEffect(() => {
-  const token = localStorage.getItem("token");
+  useEffect(() => {
+    const token = localStorage.getItem("token");
 
-  if (token) {
-    try {
-      const decoded = jwtDecode(token);
-      const isExpired = decoded.exp * 1000 < Date.now();
-      if (isExpired) {
-        console.warn("Token expired, logging out.");
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        const isExpired = decoded.exp * 1000 < Date.now();
+        if (isExpired) {
+          console.warn("Token expired, logging out.");
+          logout();
+          return;
+        }
+
+        const userData = {
+          userId: decoded.userId,
+          username: localStorage.getItem("username"),
+          deptId: localStorage.getItem("deptid"),
+          ulbId: localStorage.getItem("ulbId"),
+          collcenterid: localStorage.getItem("collcenterid"),
+          lastLogin: localStorage.getItem("lastlogin"),
+          lastLogout: localStorage.getItem("lastlogout"),
+          prabhagName: localStorage.getItem("prabhagName"),
+          prabhagID: localStorage.getItem("prabhagID"),
+          corporation: localStorage.getItem("corporation"),
+          opdid: localStorage.getItem("opdid"),
+          opdname: localStorage.getItem("opdname") || "",
+          desigId: localStorage.getItem("desigId"),
+          token,
+        };
+
+        setUser(userData);
+      } catch (error) {
+        console.error("Error decoding token:", error);
         logout();
-        return;
       }
-
-      const userData = {
-        userId: decoded.userId,
-        username: localStorage.getItem("username"),
-        deptId: localStorage.getItem("deptid"),
-        ulbId: localStorage.getItem("ulbId"),
-        collcenterid: localStorage.getItem("collcenterid"),
-        lastLogin: localStorage.getItem("lastlogin"),
-        lastLogout: localStorage.getItem("lastlogout"),
-        prabhagName: localStorage.getItem("prabhagName"),
-        prabhagID: localStorage.getItem("prabhagID"),
-        corporation: localStorage.getItem("corporation"),
-        opdid: localStorage.getItem("opdid"),
-        opdname: localStorage.getItem("opdname") || "",
-        desigId: localStorage.getItem("desigId"),
-        token,
-      };
-
-      setUser(userData);
-    } catch (error) {
-      console.error("Error decoding token:", error);
-      logout();
     }
-  }
-  setLoading(false);
-}, []);
+    setLoading(false);
+  }, []);
 
 
-  const login = (userData, token, userConfig) => {
+  const loginAdmin = (userData, token, userConfig) => {
     try {
       const decoded = jwtDecode(token);
       const userId = decoded.userId;
-        const opdid =
-      Array.isArray(userConfig) && userConfig.length > 0
-        ? userConfig[0].NUM_USERCOFIG_OPDID
-        : "";
-        const opdname = Array.isArray(userConfig) && userConfig.length > 0
+      const opdid =
+        Array.isArray(userConfig) && userConfig.length > 0
+          ? userConfig[0].NUM_USERCOFIG_OPDID
+          : "";
+      const opdname = Array.isArray(userConfig) && userConfig.length > 0
         ? userConfig[0].VAR_OPD_NAME : "";
       localStorage.setItem("username", userData.Out_UserName);
       localStorage.setItem("deptid", userData.acccounttype);
@@ -86,20 +86,20 @@ useEffect(() => {
       localStorage.setItem("prabhagID", userData.prabhagID || ""); // Fixed key
       localStorage.setItem("userId", userData.userId);
       localStorage.setItem("corporation", userData.corporation || "");
-      localStorage.setItem("opdid",opdid);
-      localStorage.setItem("opdname",opdname  || "");
+      localStorage.setItem("opdid", opdid);
+      localStorage.setItem("opdname", opdname || "");
       localStorage.setItem("desigId", userData.desigId || ""); // Fixed key
 
       setUser({
         userId,
         username: userData.Out_UserName,
-        deptId: userData.deptId,
+        deptId: userData.acccounttype,
         ulbId: userData.out_OrgId,
         collcenterid: userData.Out_Collectioncenter,
         lastLogin: userData.Out_LastLogin,
         lastLogout: userData.Out_LastLogOut,
         prabhagName: userData.prabhagName,
-        prabhagID: userData.prabhagID, 
+        prabhagID: userData.prabhagID,
         corporation: userData.corporation || "",
         desigId: userData.desigId,
         opdid,
@@ -123,7 +123,7 @@ useEffect(() => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, loginAdmin, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
