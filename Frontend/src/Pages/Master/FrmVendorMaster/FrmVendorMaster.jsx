@@ -65,11 +65,12 @@ const FrmVendorMaster = () => {
         in_panno: values.panNo,
       };
       const res = await apiService.post("AoinVendorIns", payload);
-      if (res?.data.errorCode == 9999) {
-        alert(res.data.message);
+      // error code 9999 means data inserted successfully but now getting 0 means data inserted successfully
+      if (res?.data?.errorCode == 9999 || res?.data?.errorCode == 0) {
+        alert(res.data.message || "Data inserted successfully");
         navigate("/Master/FrmVendorMasterList");
       } else {
-        alert(res.data.errorMessage);
+        alert(res?.data?.message);
       }
     } catch (error) {
       console.log(error);

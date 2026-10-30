@@ -50,9 +50,12 @@ const FrmGrnStockApproval = () => {
 
   const fetchGRNList = async () => {
   try {
+    setLoading(true)
     const res = await apiService.post("getGoodsReceiptNoteList", {
       ulbId: ulbId,
     });
+
+    console.log("res :", res)
 
     if (res?.data?.success && Array.isArray(res.data.data)) {
       const mapped = res.data.data.map((row) => ({
@@ -74,6 +77,8 @@ const FrmGrnStockApproval = () => {
     }
   } catch (error) {
     console.error("GRN list error:", error);
+  } finally{
+    setLoading(false)
   }
 };
 

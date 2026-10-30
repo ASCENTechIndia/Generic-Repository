@@ -18,7 +18,7 @@ const FrmCreatePurchaseOrderPage = ({ onClose }) => {
   const [currentTab, setCurrentTab] = useState(1);
   const [selectedSupplier, setSelectedSupplier] = useState(null);
   const [poItems, setPoItems] = useState([]);
-const [deliveryDate, setDeliveryDate] = useState(new Date());
+  const [deliveryDate, setDeliveryDate] = useState(new Date());
 
   const userId = user?.userId;
   const ulbId = user?.ulbId;
@@ -26,12 +26,12 @@ const [deliveryDate, setDeliveryDate] = useState(new Date());
   const handleClose = () => {
     navigate("/Transaction/FrmProcureManage");
   };
-  
+
   const handleNext = () => {
-//  if (currentTab === 2 && !isQuantityValid()) {
-//     alert("Some items exceed available stock. Please correct quantities before proceeding.");
-//     return;
-//   }
+    //  if (currentTab === 2 && !isQuantityValid()) {
+    //     alert("Some items exceed available stock. Please correct quantities before proceeding.");
+    //     return;
+    //   }
 
     if (currentTab === 1 && !selectedSupplier) {
       alert("Please select a supplier.");
@@ -55,70 +55,70 @@ const [deliveryDate, setDeliveryDate] = useState(new Date());
     return `${year}-${month}-${day}`;
   }
 
-const handleSubmit = async (formValues = {}) => {
-  if (!deliveryDate) {
-    alert("Please select a delivery date.");
-    return;
-  }
-
-  const { deliveryAddress = "", notes = "" } = formValues;
-
-  const subtotal = poItems.reduce((sum, item) => sum + item.total, 0);
-  const tax = subtotal * 0.12;
-  const totalAmount = subtotal + tax;
-
-  const poItemStr = poItems
-  .map((item) => {
-    const total = item.quantity * item.rate;
-    return `${item.name}#${item.categoryid}#${item.quantity}#${item.id}#${item.rate}#${total}`;
-  })
-  .join("$");
-  
- const reqIds = poItems.map(item => item.reqItemId).join(",");
- console.log("Request Item IDs:", reqIds);
-  const ip = await GetIPAddress();
-
-  setLoading(true);
-
-  const payload = {
-    in_userId: userId,
-    in_mode: 1,
-    in_ulbId: ulbId,
-    in_porderId: null,
-    in_vendorId: selectedSupplier.id,
-    in_poDate: new Date().toISOString().split("T")[0],
-    in_expDeliveryDt: formatDateYear(deliveryDate),
-    in_status: "null",
-    in_totalAmount: totalAmount,
-    in_approvedBy: userId,
-    in_approvedDt: new Date().toISOString().split("T")[0],
-    In_poitemstr: poItemStr,
-    In_deliaddres: String(deliveryAddress), // ✅ from child form
-    In_addnotes: String(notes),             // ✅ from child form
-    in_ipaddress: ip,
-    in_source: config.source,
-  };
-console.log("Payload", payload)
-
-  try {
-    const response = await apiService.post("AoinPurchaseOrderIns", payload);
-    setLoading(false);
-
-    if (response.data.errorCode === 9999) {
-      alert(response.data.errorMessage);
-      navigate("/Transaction/FrmProcureManage");
-    } else {
-      alert(response.data.errorMessage);
+  const handleSubmit = async (formValues = {}) => {
+    if (!deliveryDate) {
+      alert("Please select a delivery date.");
+      return;
     }
-  } catch (error) {
-    console.error("Submission error:", error);
-    alert("An error occurred during submission.");
-  }
-};
+
+    const { deliveryAddress = "", notes = "" } = formValues;
+
+    const subtotal = poItems.reduce((sum, item) => sum + item.total, 0);
+    const tax = subtotal * 0.12;
+    const totalAmount = subtotal + tax;
+
+    const poItemStr = poItems
+      .map((item) => {
+        const total = item.quantity * item.rate;
+        return `${item.name}#${item.categoryid}#${item.quantity}#${item.id}#${item.rate}#${total}`;
+      })
+      .join("$");
+
+    const reqIds = poItems.map((item) => item.reqItemId).join(",");
+    const ip = await GetIPAddress();
+
+    setLoading(true);
+
+    const payload = {
+      in_userId: userId,
+      in_mode: 1,
+      in_ulbId: ulbId,
+      in_porderId: null,
+      in_vendorId: selectedSupplier.id,
+      in_poDate: new Date().toISOString().split("T")[0],
+      in_expDeliveryDt: formatDateYear(deliveryDate),
+      in_status: "null",
+      in_totalAmount: totalAmount,
+      in_approvedBy: userId,
+      in_approvedDt: new Date().toISOString().split("T")[0],
+      In_poitemstr: poItemStr,
+      In_deliaddres: String(deliveryAddress), // ✅ from child form
+      In_addnotes: String(notes), // ✅ from child form
+      in_ipaddress: ip,
+      in_source: config.source,
+    };
+
+    try {
+      const response = await apiService.post("AoinPurchaseOrderIns", payload);
+      setLoading(false);
+
+      if (response.data.errorCode === 9999) {
+        alert(response.data.errorMessage);
+        navigate("/Transaction/FrmProcureManage");
+      } else {
+        alert(response.data.errorMessage);
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("An error occurred during submission.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const isQuantityValid = () => {
-  return poItems.every((item) => item.quantity <= item.currentStock);
-};
+    return poItems.every((item) => item.quantity <= item.currentStock);
+  };
 
   return (
     <Layout
@@ -194,7 +194,7 @@ console.log("Payload", payload)
               setPoItems={setPoItems}
               onNext={() => setCurrentTab(3)}
               onBack={() => setCurrentTab(1)}
-               selectedSupplier={selectedSupplier}
+              selectedSupplier={selectedSupplier}
             />
           )}
 

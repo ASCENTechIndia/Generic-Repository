@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Star } from "lucide-react";
 import apiService from "../../../../apiService";
 import { useAuth } from "../../../Context/AuthContext";
+import { useLoader } from "../../../Context/LoaderContext";
 
 const FrmSelectSupplierTab = ({
   selectedSupplier,
@@ -11,6 +12,7 @@ const FrmSelectSupplierTab = ({
 }) => {
   const [suppliers, setSuppliers] = useState([]);
   const { user } = useAuth();
+  const {setLoading} = useLoader()
   const ulbId = user?.ulbId;
 
   useEffect(() => {
@@ -18,6 +20,7 @@ const FrmSelectSupplierTab = ({
 
   const fetchSuppliers = async () => {
     try {
+      setLoading(true)
       const payload = { ulbId };
       const { data } = await apiService.post("getVendorsDropdown", payload);
 
@@ -40,6 +43,8 @@ const FrmSelectSupplierTab = ({
     } catch (error) {
       console.error("Error fetching suppliers:", error);
       setSuppliers([]);
+    } finally{
+      setLoading(false)
     }
   };
 

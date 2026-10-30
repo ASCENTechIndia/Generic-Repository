@@ -66,6 +66,8 @@ const FrmEditOrder = () => {
           ulbId: Number(ulbid),
         });
 
+        console.log("res hos:", response)
+
         if (Array.isArray(response?.data)) {
           const activeHospitals = response.data.filter(
             (h) => h.VAR_HOSPITAL_ACTIVEFLAG === "A",
@@ -316,7 +318,7 @@ const FrmEditOrder = () => {
           {({ setFieldValue, errors, touched }) => (
             <Form>
               {/* Commentout hospital field */}
-              {/* <div className="mt-4">
+              <div className="mt-4">
                 <Label text="Hospital :" required />
 
                 <Field
@@ -344,7 +346,7 @@ const FrmEditOrder = () => {
                     {errors.hospitalId}
                   </div>
                 )}
-              </div> */}
+              </div>
             </Form>
           )}
         </Formik>
