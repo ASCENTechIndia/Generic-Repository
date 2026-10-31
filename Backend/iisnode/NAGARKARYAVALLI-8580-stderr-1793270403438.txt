@@ -1,0 +1,30 @@
+(node:8580) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Error executing paginated vendor items query: Error: ORA-00942: table or view does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:224:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async getPoItemsBySup (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Inventory\aoinPurchaseOrderIns.js:574:20) {
+  offset: 765,
+  errorNum: 942,
+  isRecoverable: false,
+  code: 'ORA-00942'
+}
+Error executing paginated vendor items query: Error: ORA-00942: table or view does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:224:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async getPoItemsBySup (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Inventory\aoinPurchaseOrderIns.js:574:20) {
+  offset: 765,
+  errorNum: 942,
+  isRecoverable: false,
+  code: 'ORA-00942'
+}

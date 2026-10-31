@@ -1,0 +1,252 @@
+(node:18840) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Error fetching goods receipt note list: Error: ORA-00942: table or view does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:224:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async getGoodsReceiptNoteList (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Inventory\goodsReceiptNote.js:125:20) {
+  offset: 557,
+  errorNum: 942,
+  isRecoverable: false,
+  code: 'ORA-00942'
+}
+Error fetching goods receipt note list: Error: ORA-00942: table or view does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:224:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async getGoodsReceiptNoteList (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Inventory\goodsReceiptNote.js:125:20) {
+  offset: 557,
+  errorNum: 942,
+  isRecoverable: false,
+  code: 'ORA-00942'
+}
+Error fetching goods receipt note list: Error: ORA-00942: table or view does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:224:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async getGoodsReceiptNoteList (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Inventory\goodsReceiptNote.js:125:20) {
+  offset: 557,
+  errorNum: 942,
+  isRecoverable: false,
+  code: 'ORA-00942'
+}
+Error fetching goods receipt note list: Error: ORA-00942: table or view does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:224:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async getGoodsReceiptNoteList (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Inventory\goodsReceiptNote.js:125:20) {
+  offset: 557,
+  errorNum: 942,
+  isRecoverable: false,
+  code: 'ORA-00942'
+}
+Error fetching goods receipt note list: Error: ORA-00942: table or view does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:224:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async getGoodsReceiptNoteList (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Inventory\goodsReceiptNote.js:125:20) {
+  offset: 557,
+  errorNum: 942,
+  isRecoverable: false,
+  code: 'ORA-00942'
+}
+Error fetching goods receipt note list: Error: ORA-00942: table or view does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:224:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async getGoodsReceiptNoteList (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Inventory\goodsReceiptNote.js:125:20) {
+  offset: 557,
+  errorNum: 942,
+  isRecoverable: false,
+  code: 'ORA-00942'
+}
+Error fetching goods receipt note list: Error: ORA-00942: table or view does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:224:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async getGoodsReceiptNoteList (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Inventory\goodsReceiptNote.js:125:20) {
+  offset: 557,
+  errorNum: 942,
+  isRecoverable: false,
+  code: 'ORA-00942'
+}
+Error fetching issue item list: Error: ORA-00942: table or view does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:224:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async getIssueItemList (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Inventory\aoin_ReturnAdjustment_ins.js:94:20) {
+  offset: 536,
+  errorNum: 942,
+  isRecoverable: false,
+  code: 'ORA-00942'
+}
+Error fetching issue item list: Error: ORA-00942: table or view does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:224:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async getIssueItemList (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Inventory\aoin_ReturnAdjustment_ins.js:94:20) {
+  offset: 536,
+  errorNum: 942,
+  isRecoverable: false,
+  code: 'ORA-00942'
+}
+Error fetching issue item list: Error: ORA-00942: table or view does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:224:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async getIssueItemList (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Inventory\aoin_ReturnAdjustment_ins.js:94:20) {
+  offset: 536,
+  errorNum: 942,
+  isRecoverable: false,
+  code: 'ORA-00942'
+}
+Error fetching issue item list: Error: ORA-00942: table or view does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:224:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async getIssueItemList (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Inventory\aoin_ReturnAdjustment_ins.js:94:20) {
+  offset: 536,
+  errorNum: 942,
+  isRecoverable: false,
+  code: 'ORA-00942'
+}
+Error fetching issue item list: Error: ORA-00942: table or view does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:224:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async getIssueItemList (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Inventory\aoin_ReturnAdjustment_ins.js:94:20) {
+  offset: 536,
+  errorNum: 942,
+  isRecoverable: false,
+  code: 'ORA-00942'
+}
+Server Error: Error: ORA-06502: PL/SQL: numeric or value error: character to number conversion error
+ORA-06512: at "ADMINS.AOMA_LOGIN_FETCH", line 442
+ORA-01403: no data found
+ORA-06512: at "ADMINS.AOMA_LOGIN_FETCH", line 80
+ORA-06512: at line 1
+Help: https://docs.oracle.com/error-help/db/ora-06502/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:217:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async login (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Admin\authController.js:166:20) {
+  offset: 0,
+  errorNum: 6502,
+  isRecoverable: false,
+  code: 'ORA-06502'
+}
+Server Error: Error: ORA-06502: PL/SQL: numeric or value error: character to number conversion error
+ORA-06512: at "ADMINS.AOMA_LOGIN_FETCH", line 442
+ORA-01403: no data found
+ORA-06512: at "ADMINS.AOMA_LOGIN_FETCH", line 80
+ORA-06512: at line 1
+Help: https://docs.oracle.com/error-help/db/ora-06502/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:217:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async login (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Admin\authController.js:166:20) {
+  offset: 0,
+  errorNum: 6502,
+  isRecoverable: false,
+  code: 'ORA-06502'
+}
+Server Error: Error: ORA-06502: PL/SQL: numeric or value error: character to number conversion error
+ORA-06512: at "ADMINS.AOMA_LOGIN_FETCH", line 442
+ORA-01403: no data found
+ORA-06512: at "ADMINS.AOMA_LOGIN_FETCH", line 80
+ORA-06512: at line 1
+Help: https://docs.oracle.com/error-help/db/ora-06502/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:217:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async login (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Admin\authController.js:166:20) {
+  offset: 0,
+  errorNum: 6502,
+  isRecoverable: false,
+  code: 'ORA-06502'
+}
+Error fetching issue item list: Error: ORA-00942: table or view does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:224:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async getIssueItemList (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Inventory\aoin_ReturnAdjustment_ins.js:94:20) {
+  offset: 536,
+  errorNum: 942,
+  isRecoverable: false,
+  code: 'ORA-00942'
+}
+Error fetching issue item list: Error: ORA-00942: table or view does not exist
+Help: https://docs.oracle.com/error-help/db/ora-00942/
+    at Protocol._processMessage (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\protocol\protocol.js:204:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async ThinConnectionImpl._execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:224:7)
+    at async ThinConnectionImpl.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\thin\connection.js:1075:14)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\connection.js:998:16)
+    at async Connection.execute (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\node_modules\oracledb\lib\util.js:298:16)
+    at async getIssueItemList (D:\React_Projects\Inventory\InventoryBackEndNodeExpressApp\src\controllers\Inventory\aoin_ReturnAdjustment_ins.js:94:20) {
+  offset: 536,
+  errorNum: 942,
+  isRecoverable: false,
+  code: 'ORA-00942'
+}

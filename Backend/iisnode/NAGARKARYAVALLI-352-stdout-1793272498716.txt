@@ -1,0 +1,5 @@
+[dotenv@17.2.2] injecting env (17) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+[dotenv@17.2.2] injecting env (0) from .env -- tip: 🔐 prevent building .env in docker: https://dotenvx.com/prebuild
+Oracle DB Connection Pool Initialized
+Oracle DB Connection Pool Initialized
+Server running on port \\.\pipe\17cb5369-ffa8-49b5-98f7-be71520d1076
