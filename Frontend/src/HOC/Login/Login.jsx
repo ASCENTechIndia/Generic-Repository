@@ -185,25 +185,25 @@ const Login = () => {
     }
   };
 
-  const validateTokenAndLogin = async () => {
-    try {
-      const response = await axios.post(`${API_BASE_URL}/validate-token`, {}, { withCredentials: true });
-      const outBinds = response.data?.outBinds;
-      console.log("🔥 validate response", outBinds);
+  // const validateTokenAndLogin = async () => {
+  //   try {
+  //     const response = await axios.post(`${API_BASE_URL}/validate-token`, {}, { withCredentials: true });
+  //     const outBinds = response.data?.outBinds;
+  //     console.log("🔥 validate response", outBinds);
 
-      if (outBinds?.out_ErrorCode === 9999) {
-        console.log("✅ Valid token, logging in silently...");
-        await handleSilentSubmit(outBinds.out_userid, outBinds.out_encpassword);
-        return true;
-      } else {
-        console.log("❌ Invalid token, redirect needed");
-        return false;
-      }
-    } catch (err) {
-      console.error("❌ API call failed:", err);
-      return false;
-    }
-  };
+  //     if (outBinds?.out_ErrorCode === 9999) {
+  //       console.log("✅ Valid token, logging in silently...");
+  //       await handleSilentSubmit(outBinds.out_userid, outBinds.out_encpassword);
+  //       return true;
+  //     } else {
+  //       console.log("❌ Invalid token, redirect needed");
+  //       return false;
+  //     }
+  //   } catch (err) {
+  //     console.error("❌ API call failed:", err);
+  //     return false;
+  //   }
+  // };
 
   // useEffect(() => {
   //   const token = localStorage.getItem("token");
@@ -212,15 +212,109 @@ const Login = () => {
   //   }
   // }, []);
 
-  useEffect(() => {
-    const checkSession = async () => {
-      const ok = await validateTokenAndLogin();
-      if (!ok) {
-        window.location.href = "https://karjat.nagarkaryavalinew.com/";
+  const validateTokenAndLogin = async () => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const netToken = params.get("token");
+
+      const localToken = localStorage.getItem("token");
+
+      console.log("🌐 netToken:", netToken);
+      console.log("💾 localToken:", localToken);
+
+      // .NET login detect
+      if (netToken) {
+        sessionStorage.setItem("isNetLogin", "true");
+        console.log("✅ isNetLogin flag set");
       }
-    };
-    checkSession();
-  }, []);
+
+      const token = netToken || localToken;
+
+      console.log(
+        netToken
+          ? "🔐 Using .NET token"
+          : localToken
+  ? "🔐 Using localStorage token"
+  : "🔐 Checking cookie token (React SSO)"
+      );
+
+const headers = {};
+if (token) {
+  headers.Authorization = `Bearer ${token}`;
+}
+
+const response = await axios.post(
+  `${API_BASE_URL}/validate-token`,
+  {},
+  {
+    headers,
+    withCredentials: true,
+  }
+);
+
+const outBinds = response.data?.outBinds;
+
+console.log("🔥 validate response:", outBinds);
+
+if (outBinds?.out_ErrorCode === 9999) {
+  console.log("✅ Valid token");
+
+  await handleSilentSubmit(
+    outBinds.out_userid,
+    outBinds.out_encpassword
+  );
+
+  return true;
+}
+
+return false;
+
+    } catch (err) {
+  console.error("❌ API call failed:", err);
+  return false;
+}
+  };
+
+useEffect(() => {
+  const checkSession = async () => {
+    const ok = await validateTokenAndLogin();
+
+    if (ok) {
+      return;
+    }
+
+    const isNetLogin =
+      sessionStorage.getItem("isNetLogin") === "true";
+
+    console.log("🔐 isNetLogin after validation:", isNetLogin);
+
+    // On localhost, don't redirect away so developers can use the login form
+    if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+      console.log("Localhost environment: displaying login form");
+      setLoading(false);
+      return;
+    }
+
+    if (isNetLogin) {
+      console.log("➡️ Redirecting to .NET login");
+
+      window.location.replace(
+        "https://karjat.enagariseva.com/"
+      );
+      logout();
+      return;
+    }
+
+    console.log("➡️ Redirecting to React login");
+
+    window.location.replace(
+      "https://karjat.nagarkaryavalinew.com/"
+    );
+    logout();
+  };
+
+  checkSession();
+}, []);
 
   return (
     <>

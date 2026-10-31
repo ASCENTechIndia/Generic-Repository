@@ -115,8 +115,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    clearTimeout(inactivityTimer);
     localStorage.clear();
+    sessionStorage.clear();
+    clearTimeout(inactivityTimer);
     setUser(null);
     setLoading(false);
     window.location.replace("/"); // force redirect to login

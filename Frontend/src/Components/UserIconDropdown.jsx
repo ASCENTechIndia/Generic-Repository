@@ -13,7 +13,11 @@ const UserIconDropdown = ({ name = "",imageUrl = "" }) => {
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleLogout = async () => {
-    localStorage.clear();
+    // localStorage.clear();
+     const isNetLogin =
+      sessionStorage.getItem("isNetLogin") === "true";
+
+    console.log("🔥 isNetLogin:", isNetLogin);
     try {
       const res = await fetch(`${API_BASE_URL}/logout`, {
         method: "POST",
@@ -33,18 +37,47 @@ const UserIconDropdown = ({ name = "",imageUrl = "" }) => {
         console.log("Logout successful");
 
         // Remove cookies on successful logout
-        Cookies.remove("token", { path: "/" });
-        Cookies.remove("username", { path: "/" });
-        Cookies.remove("acccounttype", { path: "/" });
-        localStorage.removeItem("username", { path: "/" });
-        localStorage.removeItem("token", { path: "/" });
-        localStorage.removeItem("deptid", { path: "/" });
-        localStorage.removeItem("ulbId", { path: "/" });
-        localStorage.clear();
-        // Redirect
-        // Redirect to home page
-        logout(); // ✅ use the one from context
-        setUser(null);
+        // Cookies.remove("token", { path: "/" });
+        // Cookies.remove("username", { path: "/" });
+        // Cookies.remove("acccounttype", { path: "/" });
+        // localStorage.removeItem("username", { path: "/" });
+        // localStorage.removeItem("token", { path: "/" });
+        // localStorage.removeItem("deptid", { path: "/" });
+        // localStorage.removeItem("ulbId", { path: "/" });
+        // localStorage.clear();
+        // // Redirect
+        // // Redirect to home page
+        // logout(); // ✅ use the one from context
+        // setUser(null);
+        console.log("✅ Logout API successful");
+
+        // 🔥 Save redirect decision BEFORE clearing
+        const redirectToNet = isNetLogin;
+
+        // Clear old session
+        // localStorage.clear();
+        // sessionStorage.clear();
+
+        // 🔥 Save logout redirect flag AFTER clear
+        if (redirectToNet) {
+          localStorage.setItem("logoutRedirect", "net");
+        }
+
+        // logout();
+        // setUser(null);
+
+        if (redirectToNet) {
+          console.log("➡️ Redirecting to .NET login");
+
+          window.location.href =
+            "https://karjat.enagariseva.com/Login.aspx";
+
+          return;
+        }
+
+        console.log("➡️ Redirecting to React login");
+
+        navigate("/", { replace: true });
       } else {
         console.warn("Logout API responded with an error:", data);
       }
