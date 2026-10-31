@@ -36,6 +36,7 @@ const FrmCurrentStocks = () => {
 
   const getCategoryDropdown = async () => {
     try {
+      setLoading(true)
       const payload = { ulbId: ulbid };
 
       const res = await apiService.post("GetCategoryActiveList", payload);
@@ -50,6 +51,8 @@ const FrmCurrentStocks = () => {
       }
     } catch (error) {
       console.log(error);
+    } finally{
+      setLoading(false)
     }
   }
 
@@ -84,7 +87,9 @@ const FrmCurrentStocks = () => {
         In_ipaddress: ip,
         In_source: config.source,
       };
+      console.log("payloa d:", payload)
       const res = await apiService.post("aoin_issueitemutdt_ins", payload);
+      console.log("ressss :",res)
       if (res?.data?.errorCode === 9999) {
         alert(res.data.errorMsg);
         navigate(0);
@@ -106,23 +111,24 @@ const FrmCurrentStocks = () => {
         ulbId: ulbid,
       };
       const res = await apiService.post("getIssueItemList", payload);
+      console.log("res f:", res)
       if (res?.data?.length > 0) {
-        // const data = res.data.map((data) => {
-        //   return [
-        //     data.VAR_ISSUEITEM_NAME,
-        //     data.VAR_CATEGORY_NAME,
-        //     data.NUM_ISSUEITEM_QTYISSUED,
-        //     <div className="flex justify-center items-centr">
-        //       <p
-        //         onClick={() => changeStocks(data)}
-        //         className="text-blue-600 underline hover:cursor-pointer"
-        //       >
-        //         Select
-        //       </p>
-        //     </div>,
-        //   ];
-        // });
-        // setTableData(data);
+        const data = res.data.map((data) => {
+          return [
+            data.VAR_ISSUEITEM_NAME,
+            data.VAR_CATEGORY_NAME,
+            data.NUM_ISSUEITEM_QTYISSUED,
+            <div className="flex justify-center items-centr">
+              <p
+                onClick={() => changeStocks(data)}
+                className="text-blue-600 underline hover:cursor-pointer"
+              >
+                Select
+              </p>
+            </div>,
+          ];
+        });
+        setTableData(data);
         setStockList(res.data)
       }
     } catch (error) {
@@ -171,14 +177,14 @@ const FrmCurrentStocks = () => {
               data.VAR_ITEM_NAME,
               data.VAR_CATEGORY_NAME,
               data.CURRENT_STOCK,
-              // <div className="flex justify-center items-center">
-              //   <p
-              //     onClick={() => changeStocks(data)}
-              //     className="text-blue-600 underline hover:cursor-pointer"
-              //   >
-              //     Select
-              //   </p>
-              // </div>,
+              <div className="flex justify-center items-center">
+                <p
+                  onClick={() => changeStocks(data)}
+                  className="text-blue-600 underline hover:cursor-pointer"
+                >
+                  Select
+                </p>
+              </div>,
             ]);
           return (
             <Form>
@@ -208,7 +214,7 @@ const FrmCurrentStocks = () => {
                 </div>
               </div>
               <Table
-                // headerlabel={"Medicine List"}
+                headerlabel={"Medicine List"}
                 // headers={["Item", "Item Category", "Total Items", "Actions"]}
                 headers={["Item", "Item Category", "Total Items"]}
                 data={filteredData}

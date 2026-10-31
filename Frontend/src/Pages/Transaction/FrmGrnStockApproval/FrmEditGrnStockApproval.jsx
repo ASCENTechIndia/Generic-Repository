@@ -229,6 +229,7 @@ useEffect(() => {
 
     console.log("FINAL PAYLOAD", payload);
     const res = await apiService.post("insertGoodsReceiptNote", payload);
+    console.log("approval res ::", res)
 
     if (res?.data?.errorCode === 9999) {
       alert(res.data.errorMessage);

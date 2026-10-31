@@ -109,13 +109,17 @@ const FrmReturnForm = () => {
         results[2].status === "fulfilled" &&
         results[2].value?.data?.length > 0
       ) {
-        // console.log(results[2], "hello");
+        console.log(results[2], "hello");
         const options = results[2].value?.data.map((option) => {
           return {
-            value: option.NUM_ISSUEITEM_ID,
-            label: option.VAR_ISSUEITEM_NAME,
+            value: option.NUM_ITEM_ID,
+            label: option.VAR_ITEM_NAME,
             issueId: option.NUM_ISSUEITEM_ISSUEID,
             deptId: option.NUM_ISSUE_DEPTID,
+            // value: option.NUM_ISSUEITEM_ID,
+            // label: option.VAR_ISSUEITEM_NAME,
+            // issueId: option.NUM_ISSUEITEM_ISSUEID,
+            // deptId: option.NUM_ISSUE_DEPTID,
           };
         });
         setIssueItemsOptions(options);
@@ -228,7 +232,7 @@ const FrmReturnForm = () => {
                       name="deptId"
                       className="form-input-box"
                       as="select"
-                      disabled={true}
+                      // disabled={true}
                     >
                       <option value="">Select Department</option>
                       {deptOptions.map((option) => {
@@ -252,7 +256,7 @@ const FrmReturnForm = () => {
                       name="facilityId"
                       className="form-input-box hover:cursor-not-allowed"
                       as="select"
-                      disabled={true}
+                      // disabled={true}
                     >
                       <option value="">Select Issued by </option>
                       {facilityOptions.map((option) => {

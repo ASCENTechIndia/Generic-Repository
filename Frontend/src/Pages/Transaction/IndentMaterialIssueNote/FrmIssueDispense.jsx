@@ -17,6 +17,7 @@ const FrmIssueDispense = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { setLoading } = useLoader();
+  console.log("usre :", user)
 
   const ulbId = user?.ulbId;
   const [issueData, setIssueData] = useState([]);
