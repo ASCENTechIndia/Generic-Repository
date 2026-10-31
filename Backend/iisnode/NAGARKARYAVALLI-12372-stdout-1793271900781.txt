@@ -1,0 +1,8 @@
+[dotenv@17.2.2] injecting env (17) from .env -- tip: ⚙️  override existing env vars with { override: true }
+[dotenv@17.2.2] injecting env (0) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Oracle DB Connection Pool Initialized
+Oracle DB Connection Pool Initialized
+Server running on port \\.\pipe\21f6995e-4514-43f9-a9e4-f27d35dc1a32
+Received Query Params - User: KJMCAP ULB: 1890 Dept: 2481
+Received Query Params - User: KJMCAP ULB: 1890 Dept: 2481
+Received Query Params - User: KJMCAP ULB: 1890 Dept: 2481

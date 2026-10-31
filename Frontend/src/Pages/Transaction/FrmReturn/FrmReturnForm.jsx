@@ -254,7 +254,7 @@ const FrmReturnForm = () => {
                     <Label text="Issued By :" required htmlFor="facilityId" />
                     <Field
                       name="facilityId"
-                      className="form-input-box hover:cursor-not-allowed"
+                      className="form-input-box"
                       as="select"
                       // disabled={true}
                     >

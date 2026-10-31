@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>iisnode logs</title>
+    <style type="text/css">
+        body
+        {
+            font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+        }
+        table
+        {
+            border-collapse: collapse;
+        }
+        td, th
+        {
+            border: 1px solid lightgray;
+            padding: 3px 7px 2px 7px;
+        }
+        th
+        {
+            text-align: left;
+            padding-top: 5px;
+            padding-bottom: 4px;
+            background-color: Gray;
+            color: #ffffff;
+        }
+        td.stderr
+        {
+            color: Red;
+        }
+    </style>
+</head>
+<body>
+    <table id="logFilesTable">
+        <tr>
+            <th>
+                Computer name
+            </th>
+            <th>
+                PID
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+                Link
+            </th>
+        </tr>
+    </table>
+    <p id="lastUpdated"></p>
+    <script type="text/javascript">
+
+        // this is replaced with actual data at runtime by code in interceptor.js
+        var logFiles = [{"file":"NAGARKARYAVALLI-12372-stderr-1793271900786.txt","computername":"NAGARKARYAVALLI","pid":12372,"type":"stderr","created":1793271900786},{"file":"NAGARKARYAVALLI-12372-stdout-1793271900781.txt","computername":"NAGARKARYAVALLI","pid":12372,"type":"stdout","created":1793271900781},{"file":"NAGARKARYAVALLI-12488-stderr-1793353426765.txt","computername":"NAGARKARYAVALLI","pid":12488,"type":"stderr","created":1793353426765},{"file":"NAGARKARYAVALLI-12488-stdout-1793353426760.txt","computername":"NAGARKARYAVALLI","pid":12488,"type":"stdout","created":1793353426760},{"file":"NAGARKARYAVALLI-15456-stderr-1793350526643.txt","computername":"NAGARKARYAVALLI","pid":15456,"type":"stderr","created":1793350526643},{"file":"NAGARKARYAVALLI-15456-stdout-1793350526639.txt","computername":"NAGARKARYAVALLI","pid":15456,"type":"stdout","created":1793350526639},{"file":"NAGARKARYAVALLI-16816-stderr-1793272679654.txt","computername":"NAGARKARYAVALLI","pid":16816,"type":"stderr","created":1793272679654},{"file":"NAGARKARYAVALLI-16816-stdout-1793272679649.txt","computername":"NAGARKARYAVALLI","pid":16816,"type":"stdout","created":1793272679649},{"file":"NAGARKARYAVALLI-17888-stderr-1793341875433.txt","computername":"NAGARKARYAVALLI","pid":17888,"type":"stderr","created":1793341875433},{"file":"NAGARKARYAVALLI-17888-stdout-1793341875427.txt","computername":"NAGARKARYAVALLI","pid":17888,"type":"stdout","created":1793341875427},{"file":"NAGARKARYAVALLI-18064-stderr-1793343821165.txt","computername":"NAGARKARYAVALLI","pid":18064,"type":"stderr","created":1793343821165},{"file":"NAGARKARYAVALLI-18064-stdout-1793343821160.txt","computername":"NAGARKARYAVALLI","pid":18064,"type":"stdout","created":1793343821160},{"file":"NAGARKARYAVALLI-18840-stderr-1793361358136.txt","computername":"NAGARKARYAVALLI","pid":18840,"type":"stderr","created":1793361358136},{"file":"NAGARKARYAVALLI-18840-stdout-1793361358131.txt","computername":"NAGARKARYAVALLI","pid":18840,"type":"stdout","created":1793361358131},{"file":"NAGARKARYAVALLI-18840-stdout-1793361853058.txt","computername":"NAGARKARYAVALLI","pid":18840,"type":"stdout","created":1793361853058},{"file":"NAGARKARYAVALLI-352-stderr-1793272498721.txt","computername":"NAGARKARYAVALLI","pid":352,"type":"stderr","created":1793272498721},{"file":"NAGARKARYAVALLI-352-stdout-1793272498716.txt","computername":"NAGARKARYAVALLI","pid":352,"type":"stdout","created":1793272498716},{"file":"NAGARKARYAVALLI-5268-stderr-1793270849571.txt","computername":"NAGARKARYAVALLI","pid":5268,"type":"stderr","created":1793270849571},{"file":"NAGARKARYAVALLI-5268-stdout-1793270849566.txt","computername":"NAGARKARYAVALLI","pid":5268,"type":"stdout","created":1793270849566},{"file":"NAGARKARYAVALLI-6536-stderr-1793421833986.txt","computername":"NAGARKARYAVALLI","pid":6536,"type":"stderr","created":1793421833986},{"file":"NAGARKARYAVALLI-6536-stdout-1793421833982.txt","computername":"NAGARKARYAVALLI","pid":6536,"type":"stdout","created":1793421833982},{"file":"NAGARKARYAVALLI-8580-stderr-1793270403438.txt","computername":"NAGARKARYAVALLI","pid":8580,"type":"stderr","created":1793270403438}];
+        var lastUpdated = 1793421840415;
+        var date = new Date();
+
+        date.setTime(lastUpdated);
+        document.getElementById('lastUpdated').innerHTML = 'Index was last updated ' + date;
+
+        logFiles.sort(function (a, b) {
+            return b.created - a.created;
+        });
+
+        var logFilesTable = document.getElementById("logFilesTable");
+        for (var i = 0; i < logFiles.length; i++) {
+            var logFile = logFiles[i];
+            date.setTime(logFile.created);
+            var row = logFilesTable.insertRow(-1);
+            var computerNameCell = row.insertCell(0);
+            var pidCell = row.insertCell(1);
+            var typeCell = row.insertCell(2);
+            var dateCell = row.insertCell(3);
+            var logCell = row.insertCell(4);
+            computerNameCell.innerHTML = logFile.computername;
+            pidCell.innerHTML = logFile.pid.toString();
+            typeCell.innerHTML = logFile.type;
+            typeCell.setAttribute('class', logFile.type);
+            dateCell.innerHTML = date.toString();
+            logCell.innerHTML = '<a href="' + logFile.file + '">log</a>';
+        };
+
+    </script>
+</body>
+</html>
